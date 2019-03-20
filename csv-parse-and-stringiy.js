@@ -27,7 +27,7 @@ const CSV = class {
             marge_status.marge = false;
             cell_value = cell_value.slice(0,-1); // <- Remove "\"" from the end of the value.
           }
-          rtnArray[marge_status.row][marge_status.colmun] += (marge_status.row!==i ? "\r\n":"") + cell_value; // <- Now, marge and...
+          rtnArray[marge_status.row][marge_status.colmun] += (marge_status.row===i ? ",":"\r\n") + cell_value; // <- Now, marge and...
           rtnArray[i].splice(j,1); // <- remove incollect cell.
         }
       }
@@ -37,5 +37,18 @@ const CSV = class {
   }
 
   static stringify(array, option) {
+    for(let i=0; i<array.length; i++) {
+      for(let j=0; j<array[i].length; j++) {
+        const cell_value = array[i][j];
+        const includesNewLine = cell_value.indexOf("\r\n")>-1 || cell_value.indexOf("\r")>-1 || cell_value.indexOf("\n")>-1;
+        const includesComma = cell.indexOf(",")>-1;
+        if(includesNewLine || includesComma) {
+          array[i][j] = `"${cell_value}"`;
+        }
+      }
+      array[i] = array[i].join(",");
+    }
+
+    return array.join("\r\n");
   }
 };
