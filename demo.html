@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSV-Parse-and-Stringify</title>
+
+    <script src="csv-parse-and-stringify.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded",()=>{
+        document.getElementById("csv-input").addEventListener("change",e=>{
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          reader.onload = ()=>{
+            const csv = reader.result;
+            const array = CSV.parse(csv);
+
+            console.log(csv);
+            console.log(array);
+
+            for(let row of array) {
+              const tr = document.createElement("tr");
+              for(let cell of row) {
+                const td = document.createElement("td");
+                td.innerHTML = cell.replace(/\r/g,"").replace(/\n/g,"<br>");
+                tr.appendChild(td);
+              }
+              document.getElementById("table-body").appendChild(tr);
+            }
+
+            console.log(CSV.stringify(array));
+            console.log(CSV.parse(CSV.stringify(array)));
+          }
+
+          reader.readAsText(file,"Shift-JIS");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <input id="csv-input" type="file" value="Select CSV">
+
+    <table><tbody id="table-body"></tbody></table>
+  </body>
+</html>
