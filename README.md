@@ -1,4 +1,4 @@
-table# CSV-Parse-and-Strigify
+# CSV-Parse-and-Strigify
 
 ## Quick Start
 `CSV.parse(string)` can be used for convert a csv string to a 2-dimensional array.
