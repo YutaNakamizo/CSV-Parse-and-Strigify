@@ -46,7 +46,7 @@ const CSV = class {
     return rtnArray;
   }
 
-  static stringify(array, option) {
+  static stringify(array) {
     if(!Array.isArray(array)) {
       console.error("Type Error: The argument you set isn't array.");
       return "";

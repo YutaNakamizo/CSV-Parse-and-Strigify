@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>CSV-Parse-and-Stringify</title>
+    <title>demo CSV-Parse-and-Stringify</title>
 
     <script src="csv-parse-and-stringify.js"></script>
     <script>
@@ -26,9 +26,6 @@
               }
               document.getElementById("table-body").appendChild(tr);
             }
-
-            console.log(CSV.stringify(array));
-            console.log(CSV.parse(CSV.stringify(array)));
           }
 
           reader.readAsText(file,"Shift-JIS");
@@ -40,6 +37,6 @@
   <body>
     <input id="csv-input" type="file" value="Select CSV">
 
-    <table><tbody id="table-body"></tbody></table>
+    <table border="1"><tbody id="table-body"></tbody></table>
   </body>
 </html>
