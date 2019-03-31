@@ -1,6 +1,11 @@
 # CSV-Parse-and-Strigify
 
 ## Quick Start
+Load to your HTML.
+```html
+<script src="htpps://www.ggtk.app/CSV-Parse-and-Stringify/csv-parse-and-stringify.min.js"></script>
+```
+
 `CSV.parse(string)` can be used for convert a csv string to a 2-dimensional array.
 ```javascript
 // const csv <- CSV String that was read from <input type="file"> and File API.
