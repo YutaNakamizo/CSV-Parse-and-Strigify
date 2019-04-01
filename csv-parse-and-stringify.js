@@ -39,7 +39,10 @@ const CSV = class {
           }
           rtnArray[marge_status.row][marge_status.colmun] += (marge_status.row===i ? ",":"\r\n") + cell_value; // <- Now, marge.
           rtnArray[i].splice(j--,1);
-          if(marge_status.row!==i) rtnArray[marge_status.row] = rtnArray[marge_status.row].concat(rtnArray[i]);
+          if(marge_status.row!==i) {
+            rtnArray[marge_status.row] = rtnArray[marge_status.row].concat(rtnArray[i]);
+            rtnArray.splice(i--,1);
+          }
         }
       }
     }
