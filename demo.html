@@ -17,6 +17,9 @@
             console.log(csv);
             console.log(array);
 
+
+            document.getElementById("table-body").innerHTML = "";
+
             for(let row of array) {
               const tr = document.createElement("tr");
               for(let cell of row) {
