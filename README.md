@@ -3,7 +3,7 @@
 ## Quick Start
 Load to your HTML.
 ```html
-<script src="https://www.ggtk.app/CSV-Parse-and-Stringify/csv-parse-and-stringify.min.js"></script>
+<script src="https://www.ggtk.dev/CSV-Parse-and-Stringify/csv-parse-and-stringify.min.js"></script>
 ```
 
 `CSV.parse(string)` can be used for convert a csv string to a 2-dimensional array.
