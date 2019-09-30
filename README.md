@@ -1,4 +1,4 @@
-# CSV-Parse-and-Strigify
+# CSV-Parse-and-Stringify
 
 ## Quick Start
 Load to your HTML.
@@ -15,7 +15,7 @@ const table = CSV.parse(csv);
 
 `CSV.stringify(array)` can be used for convert a 2-dimensional array to a csv string.
 ```javascript
-// const arr <- 2-dimensional Array that was created in your program or was received from a server such as Google Apps Script.
+// const table <- 2-dimensional Array that was created in your program or was received from a server such as Google Apps Script.
 
 const csv = CSV.stringify(table);
 ```
