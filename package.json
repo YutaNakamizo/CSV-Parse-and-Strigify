@@ -1,6 +1,6 @@
 {
   "name": "csv-parse-and-stringify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CSV to 2-dimensional array & 2-dimensional array to CSV. You can read a CSV, can modify a CSV, and also can create CSV.",
   "main": "csv-parse-and-stringify.js",
   "scripts": {
