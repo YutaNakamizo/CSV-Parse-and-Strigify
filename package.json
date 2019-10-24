@@ -1,0 +1,26 @@
+{
+  "name": "csv-parse-and-stringify",
+  "version": "1.0.0",
+  "description": "CSV to 2-dimensional array & 2-dimensional array to CSV. You can read a CSV, can modify a CSV, and also can create CSV.",
+  "main": "csv-parse-and-stringify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YutaNakamizo/CSV-Parse-and-Stringify.git"
+  },
+  "keywords": [
+    "csv",
+    "parse",
+    "parser",
+    "stringify",
+    "table"
+  ],
+  "author": "Yuta Nakamizo <yuta.nakamizo@ggtk.app> (https://www.ggtk.app/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YutaNakamizo/CSV-Parse-and-Stringify/issues"
+  },
+  "homepage": "https://github.com/YutaNakamizo/CSV-Parse-and-Stringify#readme"
+}
