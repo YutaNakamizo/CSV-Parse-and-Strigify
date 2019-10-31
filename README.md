@@ -8,13 +8,13 @@ Load to your HTML.
 
 ## API
 - `CSV.parse(string csv [, object options])` returns a 2-dimentional array `string[][] table`.  
-`object options` can include:  
-- `delimiter: string`  
-- `linefeed: string` (<- NOT recommended)
+`object options` can include:
+    - `delimiter: string`
+    - `linefeed: string` (<- NOT recommended)
 - `CSV.stringify(string[][] table [, object options])` return a CSV text `string csv`.  
-`object options` can include:  
-- `delimiter: string`  
-- `linefeed: string` (<- NOT recommended)
+`object options` can include:
+    - `delimiter: string`
+    - `linefeed: string` (<- NOT recommended)
 
 ## Contact
 Email: [yuta.nakamizo@ggtk.app](mailto:yuta.nakamizo@ggtk.app)  
