@@ -12,7 +12,15 @@
           const reader = new FileReader();
           reader.onload = ()=>{
             const csv = reader.result;
-            const array = CSV.parse(csv);
+            const options = {
+              delimiter: document.getElementById("delimiter").value,
+              linefeed: document.getElementById("linefeed").value
+            };
+            if(options.linefeed=="") delete options.linefeed;
+            else if(options.linefeed=="\\n") options.linefeed="\n";
+            else if(options.linefeed=="\\r") options.linefeed="\r";
+            else if(options.linefeed=="\\r\\n") options.linefeed="\n";
+            const array = CSV.parse(csv, options);
 
             console.log(csv);
             console.log(array);
@@ -31,14 +39,23 @@
             }
           }
 
-          reader.readAsText(file,"Shift-JIS");
+          reader.readAsText(file,document.getElementById("encode").value);
         });
       });
     </script>
   </head>
 
   <body>
-    <input id="csv-input" type="file" value="Select CSV">
+    <input id="encode" placeholder="Encode" list="encode-list">
+    <datalist id="encode-list">
+      <option value="Shift-JIS"></option>
+      <option value="UTF-8"></option>
+    </datalist>
+
+    <br><input id="delimiter" placeholder="delimiter" value=",">
+    <br><input id="linefeed" placeholder="line feed" value="\n">
+
+    <br><input id="csv-input" type="file" value="Select CSV">
 
     <table border="1"><tbody id="table-body"></tbody></table>
   </body>

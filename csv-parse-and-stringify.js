@@ -1,19 +1,21 @@
 const CSV = class {
-  static parse(string) {
+  static parse(string, options) {
     if(typeof string !== "string") throw new TypeError("The argument you set isn't a string.");
 
-    const rtnArray = string.replace(/\r\n/g,"\n").replace(/\r/g,"\n").split("\n"); // <- Split without thinking anything :-)
-    const merge_status = {
+    if(!options || !(typeof options==="object" && !Array.isArray(options))) options = {};
+    
+    const rtnArray = options.linefeed? string.split(options.linefeed) : string.replace(/\r\n/g,"\n").replace(/\r/g,"\n").split("\n"); // <- Split without thinking anything :-)
+    let merge_status = {
       merge: false,
       row: -1,
       column: -1
     };
 
-    for(let i in rtnArray) {
-      rtnArray[i] = rtnArray[i].split(","); // <- Split without thinking anything :-)
-      for(let j in rtnArray[i]) { // Let's check and modify each cells.
+    for(let i=0; i<rtnArray.length; i++) {
+      rtnArray[i] = rtnArray[i].split(options.delimiter || ","); // <- Split without thinking anything :-)
+      for(let j=0; j<rtnArray[i].length; j++) { // Let's check and modify each cells.
         let cell_value = rtnArray[i][j];
-        if(i===rtnArray.length-1 && j===0 && cell_value==="") { // <- break; when this cell is [EOF].
+        if(i===rtnArray.length-1 && j===0 && cell_value.replace(/ /g,"")==="") { // <- break; when this cell is [EOF].
           rtnArray.splice(i,1);
           break;
         }
@@ -41,18 +43,20 @@ const CSV = class {
         }
       }
     }
-    for(let i in rtnArray) if(rtnArray[i].length===0) rtnArray.splice(i--,1);
+    for(let i=0; i<rtnArray.length; i++) if(rtnArray[i].length===0) rtnArray.splice(i--,1);
     return rtnArray;
   }
 
-  static stringify(array) {
+  static stringify(array, options) {
     if(!Array.isArray(array)) throw new TypeError("The argument you set isn't an array.");
+    
+    if(!options || !(typeof options==="object" && !Array.isArray(options))) options = {};
 
     const rtnCSV = new Array();
-    for(let i in array) {
+    for(let i=0; i<array.length; i++) {
       if(!Array.isArray(array[i])) throw new TypeError("A row of the argument you set isn't an array.");
       rtnCSV[i] = new Array();
-      for(let j in array[i]) {
+      for(let j=0;  j<array[i].length; j++) {
         let cell_value = array[i][j] || ""; // if array[i][j] is undefined, set empty string.
         const includesNewLine = cell_value.indexOf("\r\n")>-1 || cell_value.indexOf("\r")>-1 || cell_value.indexOf("\n")>-1;
         const includesComma = cell_value.indexOf(",")>-1;
@@ -60,8 +64,8 @@ const CSV = class {
         if(includesQuote) cell_value = cell_value.replace(/"/g,"\"\"");
         rtnCSV[i][j] = (includesNewLine || includesComma || includesQuote) ? `"${cell_value}"`:cell_value;
       }
-      rtnCSV[i] = rtnCSV[i].join(",");
+      rtnCSV[i] = rtnCSV[i].join(options.delimiter || ",");
     }
-    return rtnCSV.join("\n");
+    return rtnCSV.join(options.linefeed || "\n");
   }
 };
