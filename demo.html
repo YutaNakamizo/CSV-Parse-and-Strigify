@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>demo CSV-Parse-and-Stringify</title>
 
-    <script src="csv-parse-and-stringify.js"></script>
-    <script>
+    <script type="module">
+      import CSV from './csv.js';
+
       document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("csv-input").addEventListener("change",e=>{
           const file = e.target.files[0];
